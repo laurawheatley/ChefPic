@@ -1,43 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
 xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
 android:layout_height="match_parent">
 
     <FrameLayout
-
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/camera_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        android:layout_height="match_parent">
 
-        <FrameLayout
-            android:id="@+id/camera_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </FrameLayout>
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imgClose"
-            android:layout_gravity="end|top"
-            android:background="@android:drawable/ic_menu_close_clear_cancel"
-            android:padding="20dp"
-            android:contentDescription="Cancel" />
 
         <Button
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_gravity="center_horizontal|center_vertical"
             android:background="@drawable/round_button"
-            android:gravity="center_vertical|center_horizontal"
-            android:textColor="#fff"
-            android:layout_gravity="center"
-            />
-
+            android:onClick="onCapture"
+            android:textColor="#fff" />
 
     </FrameLayout>
 
 
-
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
