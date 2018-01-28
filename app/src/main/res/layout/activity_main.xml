@@ -12,7 +12,8 @@ android:layout_height="match_parent">
         <Button
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_gravity="center_horizontal|bottom"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/round_button"
             android:onClick="onCapture"
             android:textColor="#fff" />
