@@ -2,6 +2,7 @@ package conuhacksiii.chefpic;
 
 import android.Manifest;
 import android.hardware.Camera;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
@@ -34,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
 
     private Camera myCamera = null;
     private CameraView myCameraView = null;
+    private VisualRecognizer visualRecognizer = null;
+    private File picture = null;
 
     private Camera.PictureCallback mPicture = new Camera.PictureCallback() {
 
@@ -51,6 +54,10 @@ public class MainActivity extends AppCompatActivity {
                 FileOutputStream fos = new FileOutputStream(pictureFile);
                 fos.write(data);
                 fos.close();
+                picture = pictureFile;
+                new WatsonAsyncTask();
+                //String result = visualRecognizer.classifyImage(pictureFile.getPath());
+                //System.out.print(result);
             } catch (FileNotFoundException e) {
 
             } catch (IOException e) {
@@ -78,12 +85,16 @@ public class MainActivity extends AppCompatActivity {
 
             //adding surfaceView to layout
             camera_view.addView(myCameraView);
+
+            //create instance of VisualRecognizer
+            visualRecognizer = new VisualRecognizer();
         }
     }
 
     public void onCapture(View v){
 
         myCamera.takePicture(null, null, mPicture);
+
     }
 
     private static File getOutputMediaFile(int type){
@@ -114,5 +125,18 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return mediaFile;
+    }
+
+    class WatsonAsyncTask extends AsyncTask<String, Void, Boolean> {
+
+        protected Boolean doInBackground(String... url) {
+            try {
+                String result = visualRecognizer.classifyImage(picture.getPath());
+                System.out.print(result);
+                return true;
+            }
+            catch(FileNotFoundException e) {}
+            return false;
+        }
     }
 }

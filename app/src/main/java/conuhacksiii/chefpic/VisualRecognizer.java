@@ -19,13 +19,16 @@ public class VisualRecognizer {
 
     public VisualRecognizer() {
         this.service = new VisualRecognition(VisualRecognition.VERSION_DATE_2016_05_20);
-        this.service.setApiKey(Resources.getSystem().getString(R.string.visual_recognition_api_key));
+        this.service.setApiKey("32c70a6b6b3879b53de1c9d1b43d7df3a7f84b9d");
+        this.service.setEndPoint("https://gateway-a.watsonplatform.net/visual-recognition/api");
     }
 
     public String classifyImage(String filePath) throws FileNotFoundException {
         InputStream imageStream = new FileInputStream(filePath);
         ClassifyOptions classifyOptions = new ClassifyOptions.Builder().imagesFile(imageStream).build();
         ClassifiedImages result = service.classify(classifyOptions).execute();
+
+
 
         List<ClassResult> resultList = result.getImages().get(0).getClassifiers().get(0).getClasses();
         float highestScore = 0;
