@@ -55,8 +55,6 @@ public class MainActivity extends AppCompatActivity {
                 fos.write(data);
                 fos.close();
                 new WatsonAsyncTask().execute(pictureFile.getPath());
-                //String result = visualRecognizer.classifyImage(pictureFile.getPath());
-                //System.out.print(result);
             } catch (FileNotFoundException e) {
 
             } catch (IOException e) {

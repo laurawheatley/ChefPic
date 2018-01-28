@@ -25,7 +25,7 @@ public class VisualRecognizer {
 
     public String classifyImage(String filePath) throws FileNotFoundException {
         InputStream imageStream = new FileInputStream(filePath);
-        ClassifyOptions classifyOptions = new ClassifyOptions.Builder().imagesFile(imageStream).build();
+        ClassifyOptions classifyOptions = new ClassifyOptions.Builder().imagesFile(imageStream).imagesFilename(String.valueOf(imageStream)).parameters("{\"classifier_ids\":[\"food\" ]}").build();
         ClassifiedImages result = service.classify(classifyOptions).execute();
 
 
