@@ -9,7 +9,6 @@ public class Recipe {
     private String title;
     private String serving;
     private String[] topIngredients;
-    private String[] healthLabels;
     private String recipeURL;
 
     public Recipe() {
@@ -17,8 +16,14 @@ public class Recipe {
         this.title = "";
         this.serving = "";
         this.topIngredients = new String[5];
-        this.healthLabels = new String[3];
         this.recipeURL = "";
+    }
+    public Recipe(String image, String title, String url, String serving, String[] topIngredients) {
+        this.image = image;
+        this.title = title;
+        this.serving = serving;
+        this.topIngredients = topIngredients;
+        this.recipeURL = url;
     }
 
     public String getImage() {
@@ -51,14 +56,6 @@ public class Recipe {
 
     public void setTopIngredients(String[] topIngredients) {
         this.topIngredients = topIngredients;
-    }
-
-    public String[] getHealthLabels() {
-        return healthLabels;
-    }
-
-    public void setHealthLabels(String[] healthLabels) {
-        this.healthLabels = healthLabels;
     }
 
     public String getRecipeURL() {
