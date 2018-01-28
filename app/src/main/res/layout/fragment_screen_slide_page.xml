@@ -1,7 +1,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/contentArea"
     android:layout_gravity="center"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content" >
 
     <LinearLayout
@@ -50,10 +50,12 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="45dp"
-            android:background="#fa5d93"
+            android:layout_marginTop="35dp"
+            android:background="#ffe066"
 
-            android:text="See More" />
+            android:text="See More"
+            android:textColor="@android:color/white" />
+
 
     </LinearLayout>
 
