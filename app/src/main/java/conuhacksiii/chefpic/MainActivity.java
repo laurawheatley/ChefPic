@@ -32,11 +32,13 @@ import java.util.Date;
 import static android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE;
 
 
+
 public class MainActivity extends AppCompatActivity {
 
     private Camera myCamera = null;
     private CameraView myCameraView = null;
     private VisualRecognizer visualRecognizer = null;
+    private RecipeSearch rs;
 
     private Camera.PictureCallback mPicture = new Camera.PictureCallback() {
 
@@ -68,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        rs = new RecipeSearch();
+
         try {
             myCamera = Camera.open();
         } catch (Exception e){
@@ -90,7 +94,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void onCapture(View v){
 
-        myCamera.takePicture(null, null, mPicture);
+      //  myCamera.takePicture(null, null, mPicture);
+       // RecipeSearch rs = new RecipeSearch();
+        rs.findRecipes("steak");
+
+
 
     }
 
