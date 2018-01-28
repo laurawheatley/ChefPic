@@ -31,29 +31,18 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
     private RecipeSearch rs;
     private ArrayList<Recipe> recipes;
 
-    protected void onCreate(Bundle savedInstaceState){
-
-        super.onCreate(savedInstaceState);
+    protected void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.recipe_display_layout);
 
-        Intent intent = getIntent();
         rs = new RecipeSearch();
-        new RecipeAsyncTask().execute(intent.getStringExtra("EXTRA_RESULTSS"));
-
-        //creating a ViewPager and a PagerAdapter
-        mPager = (ViewPager) findViewById(R.id.pager);
-        mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
-        mPager.setAdapter(mPagerAdapter);
+        Intent intent = getIntent();
+        new RecipeAsyncTask().execute(intent.getStringExtra("EXTRA_RESULTS"));
     }
 
     public void onBackPressed(){
-
-        //if mPager is at the first item
-        if(mPager.getCurrentItem() == 0){
-            super.onBackPressed(); //handling backwards -- i believe this will figure out the looping?
-        } else {
-            mPager.setCurrentItem(mPager.getCurrentItem() - 1);
-        }
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
     }
 
     /**
@@ -67,19 +56,12 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
 
         @Override
         public Fragment getItem(int position) {
-
             Recipe newRecipe = recipes.get(position);
-            ScreenSlidePageFragment fragment = new ScreenSlidePageFragment();
-            Bundle args = new Bundle();
-            args.putString("image", newRecipe.getImage());
-            args.putString("title", newRecipe.getTitle());
-            args.putString("url", newRecipe.getRecipeURL());
-            args.putString("serving", newRecipe.getServing());
-            args.putStringArray("topingredients", newRecipe.getTopIngredients());
-            fragment.setArguments(args);
-            fragment.initialize();
-            //return new ScreenSlidePageFragment(newRecipe.getImage(), newRecipe.getTitle(), newRecipe.getRecipeURL(), newRecipe.getServing(), newRecipe.getTopIngredients());
-            return fragment;
+            return ScreenSlidePageFragment.newInstance(newRecipe.getImage(),
+                    newRecipe.getTitle(),
+                    newRecipe.getRecipeURL(),
+                    newRecipe.getServing(),
+                    newRecipe.getTopIngredients());
         }
 
         @Override
@@ -95,6 +77,13 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
         protected Void doInBackground(String... meal) {
             recipes = rs.findRecipes(meal[0]);
             return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            mPager = (ViewPager) findViewById(R.id.pager);
+            mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
+            mPager.setAdapter(mPagerAdapter);
         }
     }
 

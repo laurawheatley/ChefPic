@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void v){
             Intent intent = new Intent(getApplicationContext(), ScreenSlidePagerActivity.class);
-            intent.putExtra("EXTRA_RESULTSS",result);
+            intent.putExtra("EXTRA_RESULTS",result);
             startActivity(intent);
         }
     }
