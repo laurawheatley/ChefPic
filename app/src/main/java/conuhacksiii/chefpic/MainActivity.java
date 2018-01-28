@@ -11,6 +11,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -90,9 +91,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onCapture(View v){
-
         myCamera.takePicture(null, null, mPicture);
-
+        Toast.makeText(getApplicationContext(), "Loading...", Toast.LENGTH_LONG).show();
     }
 
     private static File getOutputMediaFile(int type){
