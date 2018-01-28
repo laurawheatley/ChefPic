@@ -20,6 +20,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -36,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
     private Camera myCamera = null;
     private CameraView myCameraView = null;
     private VisualRecognizer visualRecognizer = null;
-    private File picture = null;
 
     private Camera.PictureCallback mPicture = new Camera.PictureCallback() {
 
@@ -54,8 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 FileOutputStream fos = new FileOutputStream(pictureFile);
                 fos.write(data);
                 fos.close();
-                picture = pictureFile;
-                new WatsonAsyncTask();
+                new WatsonAsyncTask().execute(pictureFile.getPath());
                 //String result = visualRecognizer.classifyImage(pictureFile.getPath());
                 //System.out.print(result);
             } catch (FileNotFoundException e) {
@@ -127,16 +126,17 @@ public class MainActivity extends AppCompatActivity {
         return mediaFile;
     }
 
-    class WatsonAsyncTask extends AsyncTask<String, Void, Boolean> {
+    class WatsonAsyncTask extends AsyncTask<String, Void, Void> {
 
-        protected Boolean doInBackground(String... url) {
+        private String result = "";
+
+        protected Void doInBackground(String... path) {
             try {
-                String result = visualRecognizer.classifyImage(picture.getPath());
+                result = visualRecognizer.classifyImage(path[0]);
                 System.out.print(result);
-                return true;
             }
             catch(FileNotFoundException e) {}
-            return false;
+            return null;
         }
     }
 }
