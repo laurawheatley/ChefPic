@@ -34,22 +34,22 @@ public class RecipeSearch {
     //private String url = "https://api.edamam.com/search?q=" + meal + "&app_id=" + APP_ID + "&app_key=" + APP_KEY;
 
 
-    public void findRecipes(String meal)
+    public ArrayList<Recipe> findRecipes(String meal)
     {
         String url = "https://api.edamam.com/search?q=" + meal + "&app_id=" + APP_ID + "&app_key=" + APP_KEY;
-        new RecipeAsyncTask().execute(meal);
-/*
+
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder().url(url).build();
 
         try {
             Response response = client.newCall(request).execute();
-            processResult(response);
+            return processResult(response);
         }
         catch (IOException e){
-
         }
-*/
+
+        return null;
+
     }
 
 
@@ -109,24 +109,5 @@ public class RecipeSearch {
         }
         return stringArray;
     }
-    class RecipeAsyncTask extends AsyncTask<String, Void, Void> {
 
-        private String result = "";
-
-        protected Void doInBackground(String... meal) {
-            try {
-                String url = "https://api.edamam.com/search?q=" + meal[0] + "&app_id=" + APP_ID + "&app_key=" + APP_KEY;
-
-                OkHttpClient client = new OkHttpClient();
-                Request request = new Request.Builder().url(url).build();
-                Response response = client.newCall(request).execute();
-                processResult(response);
-
-                System.out.print(result);
-            }
-            catch(FileNotFoundException e) {}
-            catch(IOException e){}
-            return null;
-        }
-    }
 }

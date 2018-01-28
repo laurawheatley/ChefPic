@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 
 /**
@@ -27,10 +28,34 @@ public class ScreenSlidePageFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private String image;
+    private String title;
+    private String serving;
+    private String recipeURL;
+    private String[] topIngredients;
+
     private OnFragmentInteractionListener mListener;
 
     public ScreenSlidePageFragment() {
         // Required empty public constructor
+    }
+
+    public void initialize(){
+        Bundle args = getArguments();
+
+        image = args.getString("image");
+        title = args.getString("title");
+        serving = args.getString("serving");
+        recipeURL = args.getString("url");
+        topIngredients = args.getStringArray("topingredients");
+
+        TextView titleV = this.getView().findViewById(R.id.recipeTitle);
+        TextView servingV = this.getView().findViewById(R.id.recipeServing);
+        TextView topIngredientsV = this.getView().findViewById(R.id.topIngredients);
+
+        titleV.setText(title);
+        servingV.setText(serving);
+        topIngredientsV.setText(topIngredients.toString());
     }
 
     /**

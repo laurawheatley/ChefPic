@@ -1,6 +1,7 @@
 package conuhacksiii.chefpic;
 
 import android.Manifest;
+import android.content.Intent;
 import android.hardware.Camera;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -31,14 +32,12 @@ import java.util.Date;
 
 import static android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE;
 
-
-
 public class MainActivity extends AppCompatActivity {
 
-    private Camera myCamera = null;
-    private CameraView myCameraView = null;
-    private VisualRecognizer visualRecognizer = null;
-    private RecipeSearch rs;
+    private Camera myCamera;
+    private CameraView myCameraView;
+    private VisualRecognizer visualRecognizer;
+
 
     private Camera.PictureCallback mPicture = new Camera.PictureCallback() {
 
@@ -70,8 +69,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        rs = new RecipeSearch();
-
         try {
             myCamera = Camera.open();
         } catch (Exception e){
@@ -94,11 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onCapture(View v){
 
-      //  myCamera.takePicture(null, null, mPicture);
-       // RecipeSearch rs = new RecipeSearch();
-        rs.findRecipes("steak");
-
-
+        myCamera.takePicture(null, null, mPicture);
 
     }
 
@@ -144,5 +137,13 @@ public class MainActivity extends AppCompatActivity {
             catch(FileNotFoundException e) {}
             return null;
         }
+
+        @Override
+        protected void onPostExecute(Void v){
+            Intent intent = new Intent(getApplicationContext(), ScreenSlidePagerActivity.class);
+            intent.putExtra("EXTRA_RESULTSS",result);
+            startActivity(intent);
+        }
     }
+
 }
