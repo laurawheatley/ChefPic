@@ -22,9 +22,8 @@
                 android:layout_gravity="center_horizontal|bottom"
                 android:layout_marginBottom="20dp"
                 android:background="?android:attr/listChoiceIndicatorSingle"
-                android:backgroundTint="#ffd000"
-                android:onClick="onCapture"
-                android:textColor="#fff" />
+                android:backgroundTint="@color/colorPrimary"
+                android:onClick="onCapture" />
 
         </FrameLayout>
 
