@@ -9,7 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 public class ScreenSlidePageFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -87,7 +90,10 @@ public class ScreenSlidePageFragment extends Fragment {
         TextView titleV = view.findViewById(R.id.recipeTitle);
         TextView servingV = view.findViewById(R.id.recipeServing);
         TextView topIngredientsV = view.findViewById(R.id.topIngredients);
+        ImageView imageV = view.findViewById(R.id.recipePic);
+        Button b = view.findViewById(R.id.buttonURL);
 
+        Glide.with(view).load(image).into(imageV);
         titleV.setText(title);
         servingV.setText(serving);
         String topIngs = "";
@@ -96,14 +102,15 @@ public class ScreenSlidePageFragment extends Fragment {
                 topIngs += s + "\n";
         }
         topIngredientsV.setText(topIngs);
-    }
 
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(View view) {
-        Uri uri = Uri.parse(recipeURL);
-        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-        startActivity(intent);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri uri = Uri.parse(recipeURL);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
     }
 
     /*
