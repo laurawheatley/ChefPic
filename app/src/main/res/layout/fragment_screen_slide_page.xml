@@ -13,8 +13,8 @@
 
         <ImageView
             android:id="@+id/recipePic"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="25dp"
             android:src="@mipmap/ic_launcher_round"/>
@@ -24,33 +24,68 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="10dp"
+            android:layout_marginTop="10dp"
+            android:textAlignment="center"
             android:text="YUM YUM FOOD"
             android:textSize="30sp"
             android:textStyle="bold"/>
 
-        <TextView
-            android:id="@+id/recipeServing"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Yield: 100"/>
-
-        <TextView
-            android:id="@+id/topIngredients"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:maxWidth="300dp"
             android:layout_marginTop="5dp"
-            android:layout_gravity="center_horizontal"
-            android:text="Top Ingredients: Sugar, Marmalade, Sriracha, Water, Cocaine"/>
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:text="Servings: "
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/recipeServing"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Yield: 100"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:layout_gravity="center"
+                android:text="Top Ingredients: "
+                android:textAlignment="center"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/topIngredients"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:maxWidth="325dp"
+                android:textAlignment="center"
+                android:text="Sugar, Marmalade, Sriracha, Water, Cocaine"/>
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/button"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="5dp"
             android:background="#ffe066"
 
             android:text="See More"

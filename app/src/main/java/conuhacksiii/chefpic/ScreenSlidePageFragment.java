@@ -88,7 +88,12 @@ public class ScreenSlidePageFragment extends Fragment {
 
         titleV.setText(title);
         servingV.setText(serving);
-        topIngredientsV.setText(topIngredients.toString());
+        String topIngs = "";
+        for (String s : topIngredients) {
+            if (s != null)
+                topIngs += s + "\n";
+        }
+        topIngredientsV.setText(topIngs);
     }
 
     /*

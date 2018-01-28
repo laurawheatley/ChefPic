@@ -59,8 +59,8 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
             Recipe newRecipe = recipes.get(position);
             return ScreenSlidePageFragment.newInstance(newRecipe.getImage(),
                     newRecipe.getTitle(),
-                    newRecipe.getRecipeURL(),
                     newRecipe.getServing(),
+                    newRecipe.getRecipeURL(),
                     newRecipe.getTopIngredients());
         }
 
